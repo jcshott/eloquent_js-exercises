@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Eloquent Javascript Ch2</title>
+  <script src="https://code.jquery.com/jquery.js"></script>
+</head>
+
+<h1> Chapter 2 - Program Structure </h1>
+<h2> loop triangle </h2>
+<div id="triangle"> </div>
+<script>
+var height = 7
+
+for (var i = "#"; i.length <= height; i += "#") {
+	// console.log(i);
+	$("#triangle").append(i).append("<br>");
+}
+
+</script>
+
+<h2> FizzBuzz </h2>
+<div id="fb"> </div>
+<script>
+
+for (var i = 1; i < 101; i++) {
+	if (i % 3 === 0 && i % 5 === 0){
+		$("#fb").append("FizzBuzz").append("<br>");
+	} else if (i % 5 === 0) {
+		$("#fb").append("Buzz").append("<br>");
+	} else if (i % 3 === 0) {
+		$("#fb").append("Fizz").append("<br>");
+	} else {
+		$("#fb").append(i).append("<br>");
+	}
+}
+
+</script>
+<h2> Chessboard </h2>
+<div id="cb"> have to see in console</div>
+<script>
+
+var size = 8, board = ""
+
+for (var i = 0; i < size; i++) {
+	for (var j = 0; j < size; j++){
+		if ((i+j) % 2 === 0){
+			board += " ";
+		} else {
+			board += "#";
+		}
+	}
+	board += "\n";
+
+}
+console.log(board);
+
+</script>
+
+</body>
+</html>

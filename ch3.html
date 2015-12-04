@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Eloquent Javascript Ch3</title>
+  <script src="https://code.jquery.com/jquery.js"></script>
+</head>
+
+<h1> Chapter 3 - Functions </h1>
+<h2> Minimum </h2>
+<div id="minimum"> </div>
+
+<script>
+var min = function (a, b) {
+	if (a < b){
+		return a;
+	} else if (b < a) {
+		return b;
+	} else {
+		return String(a) + " and " + String(b) + " are equal"
+	};
+};
+console.log(min(2,5));
+$("#minimum").append("minimum of 2 & 5 is: " + min(2,5) + "<br>");
+$("#minimum").append("minimum of 5 & 5 is: " + min(5,5) + "<br>");
+
+</script>
+
+<h2> Recursion </h2>
+<div id="recursion">Check if even or odd number <br> </div>
+<script>
+isEven = function (N) {
+	if (N === 0){
+		return true;
+	} else if (N === 1) {
+		return false;
+	} else if (N < 0){
+		return isEven(-N);s
+	} else {
+		return isEven(N - 2);
+	}
+};
+
+console.log("fifty " + isEven(50));
+console.log("75 " + isEven(75));
+console.log("-1 " + isEven(-1));
+console.log("-10 " + isEven(-10));
+
+$("#recursion").append("50 " + isEven(50) + "<br>")
+$("#recursion").append("-10 " + isEven(-10) + "<br>")
+$("#recursion").append("-1 " + isEven(-1) + "<br>")
+$("#recursion").append("75 " + isEven(75) + "<br>")
+
+</script>
+
+<h2> Count </h2>
+<div id="countChars"> </div>
+
+<script>
+
+function countBs(bString) {
+	return countChars(bString, "B");
+};
+
+var countChars = function (myString, findChar) {
+	var count = 0;
+	for (var i = 0; i < myString.length; i++){
+		if (myString[i] === findChar) {
+			count += 1;
+		}
+	}
+	return count;
+}
+
+
+console.log(countBs("oBamaBfbBxa;kdjfh;lB"));
+console.log(countChars("a;lkdjfadjfh", "f"));
+
+$("#countChars").append("count Bs in: oBamaBfbBxa;kdjfh;lB " + countBs("oBamaBfbBxa;kdjfh;lB") + "<br>");
+$("#countChars").append("count fs in: a;lkdjfadjfh " + countChars("a;lkdjfadjfh", "f"));
+
+</script>
+
+</body>
+</html>

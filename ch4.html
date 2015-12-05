@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Eloquent Javascript Ch3</title>
+  <script src="https://code.jquery.com/jquery.js"></script>
+</head>
+
+<h1> Chapter 4 - Objects & Arrays </h1>
+<h2> Range & Sum </h2>
+<div id="range"> </div>
+
+<script>
+var range = function (start, end, step) {
+	var outRange = [];
+	
+	if (arguments.length === 3) {
+		if (step < 0){
+			for (var i = start; i >= end; i += step) {
+				outRange.push(i);
+			};
+
+		} else {
+			for (var i = start; i <= end; i += step) {
+				outRange.push(i);
+			};
+		}
+
+
+	} else {
+		for (var i = start; i <= end; i++) {
+			outRange.push(i);
+		};
+	};
+
+	return outRange;
+};
+
+var sum = function (numArray) {
+	var outSum = 0;
+	for (var i = 0; i < numArray.length; i++){
+		outSum += numArray[i];
+	}
+
+	return outSum;
+};
+
+console.log(sum(range(1,10)));
+console.log(sum(range(2,5)));
+console.log(range(5, 2, -1));
+console.log(range(2, 20, 5));
+
+
+$("#range").append("sum of range 1-10 is: " + sum(range(1,10)) + "<br>");
+$("#range").append("sum of range 2-5 is: " + sum(range(2,5)) + "<br>");
+$("#range").append("range from 5 - 2 counting by -1 is: " + range(5, 2, -1) + "<br>");
+$("#range").append("range from 2-20 counting by 5 is: " + range(2, 20, 5) + "<br>");
+
+</script>
+
+<h2> Reverse Array </h2>
+<div id="reverse"> </div>
+
+<script>
+//reverse array - take in array, produce new array, reversed
+
+var reverseArray = function (arrayValue) {
+	var newArray = [];
+	for (var i = arrayValue.length - 1; i >= 0; i--) {
+		newArray.push(arrayValue[i]);
+	};
+	return newArray;
+}
+ console.log(reverseArray([1, 2, 3, 4]));
+ console.log(reverseArray(['rocky', 'ruby', 'corey', 'deanna']));
+
+$("#reverse").append("reverse of [1, 2, 3, 4]: " + reverseArray([1, 2, 3, 4]) + "<br>");
+$("#reverse").append("reverse of ['rocky', 'ruby', 'corey', 'deanna']: " + reverseArray(['rocky', 'ruby', 'corey', 'deanna']) + "<br>");
+</script>
+
+<br>reverse in place:<br>
+<div id="revinPlace"></div>
+<script>
+//reverse array in place
+var reverseArrayInPlace = function (arrayValue) {
+	for (var i = 0; i <= Math.floor((arrayValue.length/2)); i++){
+		var tempVal;
+		tempVal = arrayValue[i];
+		arrayValue[i] = arrayValue[(arrayValue.length-1) - i];
+		arrayValue[(arrayValue.length-1) - i] = tempVal;
+	};
+	return arrayValue;
+}
+console.log(reverseArrayInPlace([1,2,3,4]));
+
+$("#revinPlace").append("reverse of [1, 2, 3, 4]: " + reverseArrayInPlace([1, 2, 3, 4]) + "<br>");
+
+</script>
+
+
+</body>
+</html>

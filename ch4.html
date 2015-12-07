@@ -83,7 +83,7 @@ $("#reverse").append("reverse of ['rocky', 'ruby', 'corey', 'deanna']: " + rever
 <script>
 //reverse array in place
 var reverseArrayInPlace = function (arrayValue) {
-	for (var i = 0; i <= Math.floor((arrayValue.length/2)); i++){
+	for (var i = 0; i < Math.floor((arrayValue.length/2)); i++){
 		var tempVal;
 		tempVal = arrayValue[i];
 		arrayValue[i] = arrayValue[(arrayValue.length-1) - i];
@@ -94,7 +94,64 @@ var reverseArrayInPlace = function (arrayValue) {
 console.log(reverseArrayInPlace([1,2,3,4]));
 
 $("#revinPlace").append("reverse of [1, 2, 3, 4]: " + reverseArrayInPlace([1, 2, 3, 4]) + "<br>");
+$("#revinPlace").append("reverse of ['rocky', 'ruby', 'corey', 'deanna']: " + "[ " +reverseArrayInPlace(['rocky', 'ruby', 'corey', 'deanna']) + " ]" + "<br>")
 
+</script>
+
+<br>arrays & (linked) lists <br>
+<div id="ll"></div>
+
+<script>
+var arrayToList = function(array) {
+  if (array.length === 1) {
+    return {value: array[0], rest: null};
+  } else {
+    var myList = {value: array[0], rest: arrayToList(array.slice(1))};
+  };
+  return myList;
+};
+
+var listToArray = function (lst){
+  var myArray = [];
+  var currLst = lst;
+ //need to capture all values but trying to search in 'null' list (end) doesn't work so need to stop when the list is null
+  while (currLst) {
+    myArray.push(currLst.value);
+    currLst = currLst.rest;
+  };
+  return myArray;
+};
+
+//takes an element and a list and creates a new list that adds the element to the front of the input list
+var prepend = function(element, lst) {
+  return {value: element, rest: lst};
+};
+
+//takes a list and a number and returns the element at the given position in the list, or undefined when there is no such element.
+var nth = function(lst, position) {
+  count = 0;
+  var current = lst;
+  while(count < position) {
+    current = current.rest;
+    count++;
+  };
+  if (current.value) {
+    return current.value;
+  } else {
+    return undefined;
+  };
+  
+  
+};
+
+console.log(arrayToList([10, 20]));
+// → {value: 10, rest: {value: 20, rest: null}}
+console.log(listToArray(arrayToList([10, 20, 30])));
+// → [10, 20, 30]
+console.log(prepend(10, prepend(20, null)));
+// → {value: 10, rest: {value: 20, rest: null}}
+console.log(nth(arrayToList([10, 20, 30]), 4));
+// → 20
 </script>
 
 

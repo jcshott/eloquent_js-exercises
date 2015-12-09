@@ -144,14 +144,67 @@ var nth = function(lst, position) {
   
 };
 
+//takes a list and a number and returns the element at the given position in the list, or undefined when there is no such element.
+var nthRecursive = function(list, position) {
+  if (!list){
+    return undefined;
+  } else if (position == 0){
+    return list.value;
+  }else {
+    return nth(list.rest, position - 1);
+  };
+  }
+
 console.log(arrayToList([10, 20]));
 // → {value: 10, rest: {value: 20, rest: null}}
 console.log(listToArray(arrayToList([10, 20, 30])));
 // → [10, 20, 30]
 console.log(prepend(10, prepend(20, null)));
 // → {value: 10, rest: {value: 20, rest: null}}
-console.log(nth(arrayToList([10, 20, 30]), 4));
+console.log(nth(arrayToList([10, 20, 30]), 1));
 // → 20
+console.log(nthRecursive(arrayToList([1, 5, 9, 7]), 3));
+// rtn 7
+</script>
+
+<br>deep comparison of objects<br>
+<div id='deepcompare'> <p> Write a function, deepEqual, that takes two values and returns true only if they are the same value or are objects with the same properties whose values are also equal when compared with a recursive call to deepEqual.
+
+To find out whether to compare two things by identity (use the === operator for that) or by looking at their properties, you can use the typeof operator. If it produces "object" for both values, you should do a deep comparison. But you have to take one silly exception into account: by a historical accident, typeof null also produces "object".</p></div>
+
+<script>
+function deepEqual(a, b) {
+  if (a === b){
+    return true;
+  };
+  if (typeof a != 'object' || a == null || typeof b != 'object' || b == null){
+    return false;
+  };
+  
+  var propsA = 0, propsB = 0;
+  
+  for (var prop in a) {
+    propsA += 1;
+  };
+  for (var prop in b) {
+    propsB +=1;
+    //if property looking at in b is not in a; return false. OR if recursive call to deepEqual also gives you a false return, return false. otherwise, return whether they have same prop nums.
+    if (!(prop in a) || !deepEqual(b[prop], a[prop])) {
+      return false;
+    };
+    
+  };
+  return propsA === propsB;
+}
+
+
+var obj = {here: {is: "an"}, object: 2};
+console.log(deepEqual(obj, obj));
+// → true
+console.log(deepEqual(obj, {here: 1, object: 2}));
+// → false
+console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));
+// → true
 </script>
 
 
